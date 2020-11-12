@@ -4,7 +4,7 @@
 
 The script starts by loading the dplyr package which I use later for some of the data manipulation.
 
-This is followed by a series of read.csv functions that load in the required data for the project. They are in the script just to showcase my process, but have been commented out as they might not work for somebody else that has their working directory set up differently. Adjustments will need to be made depending on the person. 
+This is followed by a series of read.csv functions that load in the required data for the project. As long as the files are in your working directory all the information should be properly loaded in to your workspace. 
 
 Since column_names were loaded in as a dataframe instead of as a vector like I wanted, the next line extracts the column of names from this dataframe and turns it into a vector of the name to make it easier to work with.
 
