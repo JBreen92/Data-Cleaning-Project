@@ -1,0 +1,69 @@
+---
+title: "CodeBook"
+author: "YOU!"
+date: "11/12/2020"
+output: html_document
+---
+
+## The Data
+The following data sets were read in from the given project files.
+
+x_test <- read.table("./test/X_test.txt") -- This data came from the x_test.txt file.
+y_test <- read.table("./test/y_test.txt") -- This data came from the y_test.txt file.
+subjects_test <- read.table("./test/subject_test.txt") -- This data came from the subject_test.txt file.
+x_train <- read.table("./train/X_train.txt") -- This data came from the x_train.txt file.
+y_train <- read.table("./train/y_train.txt") -- This data came from the y_train.txt file.
+subjects_train <- read.table("./train/subject_train.txt") -- This data came from the subject_train.txt file.
+column_names <- read.table("features.txt") -- This data came from the features.txt file.
+
+The x_test, y_test, and subject_test dataframes were then merged into the test_df dataframe with a cbind and the x_train, y_train, and subject_train dataframes were likewise merged into the train_df dataframe. These two dataframes were then merged together to create the full_df dataframe with an rbind.
+
+I then used the features.txt file to assign the variable names to all the variables that were originally in the x_test.txt and x_train.txt files and manually applied names to the subject and activity columns. 
+
+The "activity" column was changed from numeric to factor and then given the appropriate labels from the activity_labels.txt file.
+
+The full_df dataframe was then filtered to keep only the columns that contained the mean and std values for each variable.
+
+Lastly, full_df was then grouped by subject id and activity and the averages for every column based on the grouping was computed. The column names were changed to reflect this summary.
+
+
+## The Variables
+To make things more compact I am grouping the XYZ variable descriptions.
+subject -- Represents the subject id number.
+activity -- Represents the activity description the subject was engaged in.
+tBodyAcc-mean()-XYZ -- Represents mean values of tBodyAcc for X, Y, Z directions for a subject and activity
+tBodyAcc-std()-XYZ -- Represents std values of tBodyAcc for X, Y, Z directions for a subject and activity
+tGravityAcc-mean()-XYZ -- Represents mean values of tBodyAcc for X, Y, Z directions for a subject and activity
+tGravityAcc-std()-XYZ -- Represents std values of tBodyAcc for X, Y, Z directions for a subject and activity
+tBodyAccJerk-mean()-XYZ -- Represents mean values of tBodyAccJerk for X, Y, Z directions for a subject and activity
+tBodyAccJerk-std()-XYZ -- Represents std values of tBodyAccJerk for X, Y, Z directions for a subject and activity
+tBodyGyro-mean()-XYZ -- Represents mean values of tBodyGyro for X, Y, Z directions for a subject and activity
+tBodyGyro-std()-XYZ -- Represents std values of tBodyGyro for X, Y, Z directions for a subject and activity
+tBodyGyroJerk-mean()-XYZ -- Represents mean values of tBodyGyroJerk for X, Y, Z directions for a subject and activity
+tBodyGyroJerk-std()-XYZ -- Represents std values of tBodyGyroJerk for X, Y, Z directions for a subject and activity
+tBodyAccMag-mean() -- Represents mean values of tBodyAccMag for a subject and activity
+tBodyAccMag-std() -- Represents std values of tBodyAccMag for a subject and activity
+tGravityAccMag-mean() -- Represents mean values of tGravityAccMag for a subject and activity
+tGravityAccMag-std() -- Represents std values of tGravityAccMag for a subject and activity
+tBodyAccJerkMag-mean() -- Represents mean values of tBodyAccJerkMag for a subject and activity
+tBodyAccJerkMag-std() -- Represents std values of tBodyAccJerkMag for a subject and activity
+tBodyGyroMag-mean() -- Represents mean values of tBodyGyroMag for a subject and activity
+tBodyGyroMag-std() -- Represents std values of tBodyGyroMag for a subject and activity
+tBodyGyroJerkMag-mean() -- Represents mean values of tBodyGyroJerkMag for a subject and activity
+tBodyGyroJerkMag-std() -- Represents std values of tBodyGyroJerkMag for a subject and activity
+fBodyAcc-mean()-XYZ -- Represents mean values of fBodyAcc for X, Y, Z directions for a subject and activity
+fBodyAcc-std()-XYZ -- Represents std values of fBodyAcc for X, Y, Z directions for a subject and activity
+fBodyAccJerk-mean()-XYZ -- Represents mean values of fBodyAccJerk for X, Y, Z directions for a subject and activity
+fBodyAccJerk-std()-XYZ -- Represents std values of fBodyAccJerk for X, Y, Z directions for a subject and activity
+fBodyGyro-XYZ-mean() -- Represents mean values of fBodyGyro for X, Y, Z directions for a subject and activity
+fBodyGyro-XYZ-std() -- Represents std values of fBodyGyro for X, Y, Z directions for a subject and activity
+fBodyAccMag-mean() -- Represents mean values of fBodyAccMag for a subject and activity
+fBodyAccMag-std() -- Represents std values of fBodyAccMag for a subject and activity
+fBodyAccJerkMag-mean() -- Represents mean values of fBodyAccJerkMag for a subject and activity
+fBodyAccJerkMag-std() -- Represents std values of fBodyAccJerkMag for a subject and activity
+fBodyGyroMag-mean() -- Represents mean values of fBodyGyroMag for a subject and activity
+fBodyGyroMag-std() -- Represents std values of fBodyGyroMag for a subject and activity
+fBodyGyroJerkMag-mean() -- Represents mean values of fBodyGyroJerkMag for a subject and activity
+fBodyGyroJerkMag-std() -- Represents std values of fBodyGyroJerkMag for a subject and activity
+
+The full_df_avg dataframe contains the average of each of the previously listed variables grouped by subject and activity and have each been appropriately renamed to reflect that they represent that average by the addition of "avg_" in the name.
